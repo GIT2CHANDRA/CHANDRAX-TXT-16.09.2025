@@ -1400,7 +1400,7 @@ async def txt_handler(bot: Client, m: Message):
 
 
 # Replace the problematic filename creation section with this:
-max_filename_length = 60  # Telegram has a limit for filenames
+#max_filename_length = 60  # Telegram has a limit for filenames
 
 if filename == "/d":
     # Limit the base name to allow space for the count and extension
