@@ -1180,7 +1180,7 @@ async def titlle_button(client, callback_query):
 
 @bot.on_callback_query(filters.regex("broadcast_command"))
 async def pin_button(client, callback_query):
-  keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Feature", callback_data="feat_command")]])
+  keyboard = InlineKeyboardMarkup([[InlineKeyboardBifBack to Feature", callback_data="feat_command")]])
   caption = f"**📢 Broadcasting Support:**\n\n◆/broadcast - 📢 Broadcast to All Users.\n◆/broadusers - 👁️ To See All Broadcasting User"
   await callback_query.message.edit_media(
     InputMediaPhoto(
@@ -1397,12 +1397,25 @@ async def txt_handler(bot: Client, m: Message):
             link0 = "https://" + Vxy
 
             name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            if filename == "/d":
-                name = f'{str(count).zfill(3)}) {name1[:60]}'
-                namef = f'{name1[:60]}'
-            else:
-                name = f'{str(count).zfill(3)}) {name1[:60]} {filename}'
-                namef = f'{name1[:60]} {filename}'
+            # Replace the problematic filename creation section with this:
+max_filename_length = 60  # Telegram has a limit for filenames
+
+if filename == "/d":
+    # Limit the base name to allow space for the count and extension
+    base_name = name1[:max_filename_length - 10]  # Reserve 10 chars for count and formatting
+    name = f'{str(count).zfill(3)} {base_name}'
+    namef = f'{base_name}'
+else:
+    # When custom filename is provided, be more conservative with length
+    base_name = name1[:max_filename_length - 15 - len(filename)]  # Reserve space for count, custom text and formatting
+    name = f'{str(count).zfill(3)} {base_name} {filename}'
+    namef = f'{base_name} {filename}'
+            #if filename == "/d":
+                #name = f'{str(count).zfill(3)}) {name1[:60]}'
+                #namef = f'{name1[:60]}'
+            #else:
+                #name = f'{str(count).zfill(3)}) {name1[:60]} {filename}'
+                #namef = f'{name1[:60]} {filename}'
             
             if "visionias" in url:
                 async with ClientSession() as session:
