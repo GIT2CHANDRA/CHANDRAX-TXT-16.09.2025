@@ -1180,7 +1180,7 @@ async def titlle_button(client, callback_query):
 
 @bot.on_callback_query(filters.regex("broadcast_command"))
 async def pin_button(client, callback_query):
-  keyboard = InlineKeyboardMarkup([[InlineKeyboardBifBack to Feature", callback_data="feat_command")]])
+  keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Feature", callback_data="feat_command")]])
   caption = f"**📢 Broadcasting Support:**\n\n◆/broadcast - 📢 Broadcast to All Users.\n◆/broadusers - 👁️ To See All Broadcasting User"
   await callback_query.message.edit_media(
     InputMediaPhoto(
@@ -1397,7 +1397,9 @@ async def txt_handler(bot: Client, m: Message):
             link0 = "https://" + Vxy
 
             name1 = links[i][0].replace("(", "[").replace(")", "]").replace("_", "").replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
-            # Replace the problematic filename creation section with this:
+
+
+# Replace the problematic filename creation section with this:
 max_filename_length = 60  # Telegram has a limit for filenames
 
 if filename == "/d":
@@ -1410,13 +1412,7 @@ else:
     base_name = name1[:max_filename_length - 15 - len(filename)]  # Reserve space for count, custom text and formatting
     name = f'{str(count).zfill(3)} {base_name} {filename}'
     namef = f'{base_name} {filename}'
-            #if filename == "/d":
-                #name = f'{str(count).zfill(3)}) {name1[:60]}'
-                #namef = f'{name1[:60]}'
-            #else:
-                #name = f'{str(count).zfill(3)}) {name1[:60]} {filename}'
-                #namef = f'{name1[:60]} {filename}'
-            
+
             if "visionias" in url:
                 async with ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
